@@ -1,0 +1,32 @@
+package com.BaseTest;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+
+public class BaseTest {
+	
+	public WebDriver driver;
+	String ApplicationUrlAddress = "http://127.0.0.1/orangehrm-4.2.0.1/symfony/web/index.php/auth/login";
+	
+	@BeforeTest
+	public void setUp()
+	{
+		System.setProperty("webdriver.chrome.driver","./BrowserDriverFiles/chromedriver.exe");
+		driver = new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		
+		driver.get(ApplicationUrlAddress);	
+	}
+	
+	
+	 @AfterTest
+	 public void tearDown() 
+	{
+		driver.quit();
+	}
+}
